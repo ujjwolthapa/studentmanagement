@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Build') {
             expression{
-                BRANCH_NAME=='main' && CODE_CHANGES == true
+                env.BRANCH_NAME=='main' && CODE_CHANGES == true
             }
             steps {
                 echo 'Building..'
