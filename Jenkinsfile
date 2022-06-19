@@ -1,4 +1,5 @@
 // CODE_CHANGES=getGitChanges()
+def gv
 pipeline {
     agent any
     parameters{
