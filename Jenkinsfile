@@ -11,9 +11,9 @@ pipeline {
 
     stages {
         stage('Build') {
-            expression{
-                env.BRANCH_NAME=='main' && CODE_CHANGES == true
-            }
+            // expression{
+            //     env.BRANCH_NAME=='main' && CODE_CHANGES == true
+            // }
             steps {
                 echo 'Building..'
                 sh "mvn install"
