@@ -1,4 +1,4 @@
-CODE_CHANGES=getGitChanges()
+// CODE_CHANGES=getGitChanges()
 pipeline {
     agent any
     parameters{
@@ -8,8 +8,12 @@ pipeline {
     tools{
         maven 'maven-3.6'
     }
+
     stages {
         stage('Build') {
+            expression{
+                env.BRANCH_NAME=='main' && CODE_CHANGES == true
+            }
             steps {
                 echo 'Building..'
                 sh "mvn install"
