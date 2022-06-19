@@ -35,13 +35,15 @@ pipeline {
             //     }
             // }
             steps {
-                echo 'Testing..'
+                gv.testApp()
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
-                echo "depolying version ${VERSION}"
+                script{
+                    gv.deployApp()
+                    echo "depolying version ${VERSION}"
+                }
             }
         }
     }
