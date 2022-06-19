@@ -10,13 +10,22 @@ pipeline {
     }
 
     stages {
+        stage('init'){
+            steps{
+                script{
+                    gv = load "script.groovy"
+                }
+            }
+        }
         stage('Build') {
             // expression{
             //     env.BRANCH_NAME=='main' && CODE_CHANGES == true
             // }
             steps {
-                echo 'Building..'
-                sh "mvn install"
+                scrip{
+                    gv.buildApp()
+                }
+                // sh "mvn install"
             }
         }
         stage('Test') {
