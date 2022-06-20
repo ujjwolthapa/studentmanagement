@@ -5,13 +5,20 @@ pipeline{
     }
     stages{
         stage('build'){
-            echo 'building'
+            steps{
+                echo 'building'
+            }
+            
         }
         stage('test'){
-            echo 'testing'
+            steps{
+                echo 'testing'
+            }
         }
         stage('depoly'){
-            echo'depolying'
+            steps{
+                echo'depolying'
+            }
         }
     }
 }
