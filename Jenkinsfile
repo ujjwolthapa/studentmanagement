@@ -1,57 +1,29 @@
-def gv
 pipeline{
     agent any
-        parameters{
-        choice(name:'VERSION',choices:['1.1.0','1.2.0','1.3.0'],description:'')
-        booleanParam(name:'executeTests',defaultValue:true,description:'')
-    }
     tools{
         maven "maven-3.6"
     }
     stages{
-        stage('init'){
+        stage('build jar'){
             steps{
-                script{
-                    gv = load "script.groovy"
-                    gv.initApp()
+                echo "building the application..."
+                sh 'mvn package'
+            }
+        }
+           stage('build image'){
+            steps{
+                echo "building the docker image..."
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-repo',passwordVariable:'PASS',usernameVariable:'USER')]){
+                    sh 'docker build -t bromx/my-repo:student-1.0'
+                    sh "echo $PASS | docker login -u $USER --password-stdin"
+                    sh 'docker push bromx/my-repo:student-2.0'
                 }
             }
         }
-        stage('build'){
-            steps{
-                script{
-                    gv.buildApp()
-                }
-            }
-            
-        }
-        stage('test'){
-            when{
-                expression{
-                    params.executeTests
-                }
-            }
-            steps{
-                script{
-                    gv.testApp()
-                }
-            }
-        }
-        stage('depoly'){
-            // input{
-            //     message "select the enviroment to deploy"
-            //     ok "Done"
-            //     parameters{
-            //         choice(name:'ENV',choices:['dev','stag','pro'],description:'')
-            //         // INPut
-            //     }
-            // }
-            steps{
-                script{
-                    env.Env = input message:"select the enviroment to deploy", ok:"Done", parameters:[choice(name:'ENV',choices:['dev','stag','pro'],description:'')]
-                    gv.depolyApp()
-                    echo "Depolying to ${ENV}"
-                }
+        stage("depoly")
+        steps{
+            script{
+                echo "deploying application"
             }
         }
     }
