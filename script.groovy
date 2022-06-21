@@ -3,7 +3,7 @@ def initApp(){
 }
 def buildApp(){
     echo 'building the app...'
-    sh 
+    sh 'mvn --version'
 }
 def testApp(){
     echo 'testing the jobs...'
