@@ -12,6 +12,7 @@ pipeline{
             steps{
                 script{
                     def gv = load "./script.groovy"
+                    // 
                 }
             }
         }
