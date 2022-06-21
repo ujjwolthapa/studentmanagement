@@ -1,3 +1,4 @@
+def gv
 pipeline{
     agent any
         parameters{
@@ -11,7 +12,7 @@ pipeline{
         stage('init'){
             steps{
                 script{
-                    def gv = load "script.groovy"
+                    gv = load "script.groovy"
                     gv.initApp()
                 }
             }
