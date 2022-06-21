@@ -35,7 +35,7 @@ pipeline{
         stage('depoly'){
             steps{
                 script{
-                    gv.deployApp()
+                    gv.depolyApp()
                 }
             }
         }
