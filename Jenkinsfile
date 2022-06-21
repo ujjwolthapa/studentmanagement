@@ -12,9 +12,8 @@ pipeline{
         stage('init'){
             steps{
                 script{
-                    gv = load "script.groovy"
+                    gv = load "script.goovy"
                 }
-                gv.initApp()
             }
         }
         stage('build'){
@@ -25,12 +24,12 @@ pipeline{
         }
         stage('test'){
             steps{
-                gv.testApp()
+                echo 'testing'
             }
         }
         stage('depoly'){
             steps{
-                gv.depolyApp()
+                echo'depolying'
             }
         }
     }
