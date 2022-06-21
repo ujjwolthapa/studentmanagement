@@ -1,4 +1,3 @@
-def gv
 pipeline{
     agent any
         parameters{
@@ -7,15 +6,6 @@ pipeline{
     }
     tools{
         maven "maven-3.6"
-    }
-    stages{
-        stage{
-            steps{
-                script{
-                    gv = load "script.groovy"
-            }
-            }
-        }
     }
     stages{
         stage('build'){
