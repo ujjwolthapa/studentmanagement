@@ -14,22 +14,23 @@ pipeline{
                 script{
                     gv = load "script.groovy"
                 }
+                gv.initApp()
             }
         }
         stage('build'){
             steps{
-                echo 'building'
+                gv.buildApp()
             }
             
         }
         stage('test'){
             steps{
-                echo 'testing'
+                gv.testApp()
             }
         }
         stage('depoly'){
             steps{
-                echo'depolying'
+                gv.depolyApp()
             }
         }
     }
