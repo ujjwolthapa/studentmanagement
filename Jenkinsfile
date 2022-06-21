@@ -47,8 +47,8 @@ pipeline{
             }
             steps{
                 script{
-                    gv.depolyApp()110287264
-                    echo "Depolying to ${params.ENV}"
+                    gv.depolyApp()
+                    echo "Depolying to ${ENV}"
                 }
             }
         }
