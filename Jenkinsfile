@@ -38,15 +38,17 @@ pipeline{
             }
         }
         stage('depoly'){
-            input{
-                message "select the enviroment to deploy"
-                ok "Done"
-                parameters{
-                    choice(name:'ENV',choices:['dev','stag','pro'],description:'')
-                }
-            }
+            // input{
+            //     message "select the enviroment to deploy"
+            //     ok "Done"
+            //     parameters{
+            //         choice(name:'ENV',choices:['dev','stag','pro'],description:'')
+            //         // INPut
+            //     }
+            // }
             steps{
                 script{
+                    env.Env = input:"select the enviroment to deploy" ok:"Done" parameters:[choice(name:'ENV',choices:['dev','stag','pro'],description:'')]
                     gv.depolyApp()
                     echo "Depolying to ${ENV}"
                 }
