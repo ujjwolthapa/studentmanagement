@@ -48,7 +48,7 @@ pipeline{
             // }
             steps{
                 script{
-                    env.Env = input message:"select the enviroment to deploy" ok:"Done" parameters:[choice(name:'ENV',choices:['dev','stag','pro'],description:'')]
+                    env.Env = input message:"select the enviroment to deploy", ok:"Done", parameters:[choice(name:'ENV',choices:['dev','stag','pro'],description:'')]
                     gv.depolyApp()
                     echo "Depolying to ${ENV}"
                 }
