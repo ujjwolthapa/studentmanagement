@@ -12,24 +12,30 @@ pipeline{
             steps{
                 script{
                     def gv = load "./script.groovy"
-                    // 
+                    gv.initApp()
                 }
             }
         }
         stage('build'){
             steps{
-                echo 'building'
+                script{
+                    gv.buildApp()
+                }
             }
             
         }
         stage('test'){
             steps{
-                echo 'testing'
+                script{
+                    gv.testApp()
+                }
             }
         }
         stage('depoly'){
             steps{
-                echo'depolying'
+                script{
+                    gv.deployApp()
+                }
             }
         }
     }
